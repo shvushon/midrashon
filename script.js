@@ -165,11 +165,11 @@ function filterByType(items)
     var tmp_type = []
     for (var j = 0; j < dict.length; j++)
     {
-      tmp_type.push(global_json[items[i][0]][dict[j]] === '1')
+      tmp_type.push(global_json[items[i][0]][dict[j]] === 1)
     }
     for (var j = 0; j < tmp_type.length; j++)
     {
-      if (tmp_type[j] === type[j] === true)
+      if (tmp_type[j] === type[j] && type[j] === true)
       {
         new_items.push(items[i])
         break
