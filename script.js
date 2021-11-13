@@ -5,9 +5,12 @@ let global_json = {}
 let this_json = {}
 let counter = 0
 let fields = []
+let type = []
+
 
 document.getElementById('start-btn').addEventListener('click', startGame)
 document.getElementById("restart").addEventListener('click', restartGame)
+document.getElementById("next-question-btn").addEventListener('click', nextQuestion)
 
 function initGame()
 {
@@ -42,18 +45,26 @@ function startGame() {
   hide('start-container')
   const csv_url = 'https://raw.githubusercontent.com/shvushon/midrashon/master/midrashon.csv'
   getDataFromURL(csv_url).then(csv => {
-    console.log(csv)
     var json = csvToJSON(csv)
     global_json = json
-    console.log(json)
     fields = Object.keys(json["מגדל עוז"])
 
     currentQuestionIndex = 0
     
     hide('loading-container')
-    show('questions-container')
+    show('start-question')
     setNextQuestion()
   })
+}
+
+function nextQuestion()
+{
+  for (var i = 0; i < 5; i++)
+  {
+    type.push(document.getElementById('cb' + i).checked)
+  }
+  hide('start-question')
+  show('questions-container')
 }
 
 function restartGame()
@@ -94,7 +105,7 @@ function selectAnswer(e) {
   {
     this_json[field] = parseInt(selectedButton.innerHTML)
   }
-  if (fields.length > currentQuestionIndex + 1) {
+  if (fields.length > currentQuestionIndex + 6) {
     currentQuestionIndex++
     setNextQuestion()
   } else {
@@ -165,6 +176,8 @@ function getResults()
 
   const zero_percent = values[values.length - 1]
 
+  console.log(values)
+  console.log(zero_percent)
   if (zero_percent === 0)
     return false;
   
@@ -177,6 +190,8 @@ function getResults()
       }
     }
   }
+
+  console.log(results_arr)
 
   let uniqueItems = []
   for (var i of results_arr) {
