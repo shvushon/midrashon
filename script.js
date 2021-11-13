@@ -30,7 +30,7 @@ function show(id)
 
 function allEqual(arr)
 {
-  if (arr.length != 11)
+  if (arr.length != 13)
     return -1;
   for (let i = 0; i < arr.length; i++)
   {
@@ -72,6 +72,10 @@ function restartGame()
   hide('results-container')
   initGame()
   startGame()
+  for (var i = 0; i < 5; i++)
+  {
+    document.getElementById('cb' + i).checked = false
+  }
 }
 
 function setNextQuestion() {
@@ -151,6 +155,29 @@ function valueInArr(arr, value)
   return false
 }
 
+function filterByType(items)
+{
+  var new_items = []
+  const dict = ['לפני שירות','אחרי שירות/צבא','לפני צבא','שילוב שירות','שילוב אקדמיה']  
+  for (var i = 0; i < items.length; i++)
+  {
+    var tmp_type = []
+    for (var j = 0; j < dict.length; j++)
+    {
+      tmp_type.push(global_json[items[i][0]][dict[j]] === '1')
+    }
+    for (var j = 0; j < tmp_type.length; j++)
+    {
+      if (tmp_type[j] === type[j] === true)
+      {
+        new_items.push(items[i])
+        break
+      }
+    }
+  }
+  return new_items
+}
+
 function getResults()
 {
   var result = {}
@@ -171,37 +198,28 @@ function getResults()
     result[i] = sum
   }
 
-  var values = Object.values(result)
-  values.sort((a, b) => a-b)
+  var items = Object.keys(result).map(function(key) {
+    return [key, result[key]];
+  });
+  
+  items = filterByType(items)
 
-  const zero_percent = values[values.length - 1]
+  items.sort(function(first, second) {
+    return first[1] - second[1];
+  });
+  
+  const zero_percent = items[items.length - 1][1]
 
-  console.log(values)
-  console.log(zero_percent)
   if (zero_percent === 0)
     return false;
   
   var results_arr = []
   
   for (var i = 0; i < 3; i++) {
-    for (var j in result) {
-      if (values[i] === result[j]) {
-        results_arr.push([j, 100 * (1 - values[i]/zero_percent)])
-      }
-    }
+        results_arr.push([items[i][0], 100 * (1 - items[i][1]/zero_percent)])
   }
-
   console.log(results_arr)
-
-  let uniqueItems = []
-  for (var i of results_arr) {
-    if (!valueInArr(uniqueItems, i))
-    {
-      uniqueItems.push(i)
-    }
-  }
-
-  return uniqueItems
+  return results_arr
 }
 
 function sum(array) {
