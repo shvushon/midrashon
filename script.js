@@ -72,6 +72,7 @@ function restartGame()
   hide('results-container')
   initGame()
   startGame()
+  type = []
   for (var i = 0; i < 5; i++)
   {
     document.getElementById('cb' + i).checked = false
