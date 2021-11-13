@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html charset="utf-8">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Heebo">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <script defer src="script.js"></script>
+  <title>מדרשון</title>
+  <meta property="og:description" content="שמיניסטית יקרה! לפניך שאלון שבו תוכלי לגלות איזו מדרשה/מכינה מתאימה לך.">
+  <meta property="og:url" content="https://shvushon.github.io/midrashon/">
+</head>
+<body>
+
+  <div class="main-container">
+    
+    <div id="start-container">
+      <h1>ברוכות הבאות ל"מדרשון"</h1>
+      שמיניסטית יקר! לפניך שאלון שבו תוכלי לגלות איזו מדרשה/מכינה מתאימה לך.<br>
+      השאלון אינו ח"ו מדרג, אלא עובד על בסיס התאמה אישית.<br>
+      השאלון הינו המלצה כללית בלבד ואינו מהווה תחליף לשיחה עם המחנכת לגבי העניין.<br>
+      בהצלחה!<br><br>
+      <button id="start-btn" class="start-btn btn">התחילי</button>
+      <br><br>
+      <b>מונה כניסות:</b><br>
+      <!-- Visits Counter -->
+      <img src="https://www.webfreecounter.com/hit.php?id=grpkppo&style=10">
+      <br><br>
+      *השאלון מבוסס על מידע שנאסף מתלמידות ובוגרות רבות.<br>
+    </div>
+    
+    <div id="questions-container" class="hide">
+      <h1>מדרשון</h1>
+      <div id="question" class="question">שאלה</div>
+      <div id="answer-buttons" class="btn-grid"></div>
+    </div>
+
+    <div id="results-container" class="hide">
+      <h1>המדרשות/מכינות המומלצות עבורך הן:</h1>
+      <h2 id="res0"></h2>
+      <h2 id="res1"></h2>
+      <h2 id="res2"></h2>
+      <button id="restart" class="btn">התחילי מחדש</button>
+      <br><br>
+      <b>יוצרות:</b><br>
+      אוריה קסנר<br>
+      מעין רייך<br>
+    </div>
+
+    <div id="loading-container" class="hide">
+      <h2>טוענת נתונים...</h2>
+      <div class="loader" id="loader"></div>
+    </div>
+
+  </div>
+</body>
+</html>

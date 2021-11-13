@@ -1,0 +1,20 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script></head>
+<body>
+<p id="txt"></p>
+<script>
+
+async function getCSV(url){
+  const response = await fetch(url, {})
+  return response.text()
+}
+
+const csv_url = 'https://raw.githubusercontent.com/shvushon/-/master/yeshivot.csv'
+  getCSV(csv_url).then(csvStr => {
+    var encrypted = CryptoJS.AES.encrypt(csvStr, "heder-86~$@")
+    document.body.innerHTML = encrypted
+  })
+</script>
+ </body>
+</html>
