@@ -245,9 +245,9 @@ function finishGame()
   else if (allEqual(numbers_values) === 1)
     writeOneResult('תתחתני, אחותי')
   else if ([2, 3, 4].includes(allEqual(numbers_values)))
-    writeOneResult("חברון החדשה")
+    writeOneResult("האוניברסיטה החופשית של ברלין")
   else if (allEqual(numbers_values) === 5)
-    writeOneResult("פוניבז'")
+    writeOneResult("המכון הטכנולוגי חולון")
   else {
     for (var i = 0; i < 3; i++)
       document.getElementById("res" + i).innerHTML = `#${i + 1} - ${results[i][0]} (${(Math.sqrt(results[i][1]) * 10).toFixed(2)}% התאמה)`
